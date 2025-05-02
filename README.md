@@ -143,7 +143,7 @@ The web interface contains the following tabs:
 ![Screenshot 2025-01-05 131121](https://github.com/user-attachments/assets/cb5396c6-da17-461e-aadc-0353dc72d8ef)
 ![Screenshot 2025-01-05 131129](https://github.com/user-attachments/assets/c05191f0-ece6-418e-adf9-b2f19a98063f)
 ![Screenshot 2025-01-05 131158](https://github.com/user-attachments/assets/947f80ca-9761-4e28-8318-e250f49e01a5)
-![Screenshot 2025-01-05 131211](https://github.com/user-attachments/assets/934ea234-e5f5-43a6-89cf-3a151d5f1c17)
+![Screenshot 2025-05-02 223654](https://github.com/user-attachments/assets/3f981f44-9911-4d2e-86ad-c2cd792145db)
 ![Screenshot 2025-01-05 131331](https://github.com/user-attachments/assets/0ae65a6e-b1c4-4843-8972-649659754929)
 ![Screenshot 2025-01-05 131414](https://github.com/user-attachments/assets/4bf8285d-00be-4f84-8d4e-691722270196)
 ![Screenshot 2025-01-05 131427](https://github.com/user-attachments/assets/05ba9e95-085e-4e4c-98e1-5c848a0af75f)
@@ -152,5 +152,5 @@ The web interface contains the following tabs:
 ![Screenshot 2025-01-05 131455](https://github.com/user-attachments/assets/a7741b2e-4a83-42dd-8a40-70defadaff24)
 ![Screenshot 2025-01-05 131500](https://github.com/user-attachments/assets/2798b488-e73c-4298-a0d0-c751472dadd4)
 ![Screenshot 2025-01-05 131530](https://github.com/user-attachments/assets/c74b113a-3711-4a16-a914-b91234eb9f87)
-![image](https://github.com/user-attachments/assets/668f29d9-f860-438d-b7da-09e13992cff6)
+![Screenshot 2025-05-02 223450](https://github.com/user-attachments/assets/cbf3fe59-9258-48e4-83fe-e876f265dc85)
 
