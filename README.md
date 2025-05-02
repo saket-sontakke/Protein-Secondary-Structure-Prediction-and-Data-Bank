@@ -138,9 +138,9 @@ The web interface contains the following tabs:
 ## Screenshots
 
 ![Screenshot 2025-01-05 131020](https://github.com/user-attachments/assets/5ff9fb5f-1510-4207-b055-b18e6e198801)
-![Screenshot 2025-01-05 131038](https://github.com/user-attachments/assets/11cd8182-d5d5-4fa8-b6b6-3f83e0014992)
-![Screenshot 2025-01-05 131056](https://github.com/user-attachments/assets/da7b71d5-4527-4e96-8b0b-c4773199f4fc)
 ![Screenshot 2025-05-02 223739](https://github.com/user-attachments/assets/95b70f4f-01b0-4d9d-b269-24e0d506954c)
+![Screenshot 2025-01-05 131056](https://github.com/user-attachments/assets/da7b71d5-4527-4e96-8b0b-c4773199f4fc)
+![Screenshot 2025-05-02 223905](https://github.com/user-attachments/assets/720cfbae-0bab-4507-ac40-4b83242ead63)
 ![Screenshot 2025-01-05 131129](https://github.com/user-attachments/assets/c05191f0-ece6-418e-adf9-b2f19a98063f)
 ![Screenshot 2025-01-05 131158](https://github.com/user-attachments/assets/947f80ca-9761-4e28-8318-e250f49e01a5)
 ![Screenshot 2025-05-02 223654](https://github.com/user-attachments/assets/3f981f44-9911-4d2e-86ad-c2cd792145db)
