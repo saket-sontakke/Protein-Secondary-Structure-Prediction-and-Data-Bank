@@ -34,7 +34,7 @@ CEECCCCCCHHHHHHCCCCCCCCCC
    - Download and extract the zip file.
    - Download `best_model_kernel_5.h5` (pre-trained model) from dropbox link - 
      https://www.dropbox.com/scl/fi/uyor3rqikf817ck6nxubt/best_model_kernel_5.h5?rlkey=zmiqmw3hct0ooeo72dsrivxrv&st=3ivqb1ow&dl=0.
-   - Move the downloaded `best_model_kernel_5.h5` file to `Protein-Secondary-Structure-Prediction-and-Data-Bank\mini_project\PSSP`.
+   - Move the downloaded `best_model_kernel_5.h5` file to `Protein-Secondary-Structure-Prediction-and-Data-Bank\PSSP`.
    > Caution : Make sure the file name is `best_model_kernel_5.h5` and not renamed to `best_model_kernel_5 (1).h5` or something else while downloading.
 
 1. **Install Dependencies**
@@ -58,15 +58,18 @@ CEECCCCCCHHHHHHCCCCCCCCCC
       ```bash
       pip install Flask Flask-Cors numpy pandas tensorflow scikit-learn keras
       ```
-   
-2. **Start the Backend Server**
+2. **Update Environment Variables**
+   - Open `Protein-Secondary-Structure-Prediction-and-Data-Bank\PSSP\server\.env`.
+   - Update the environment variables accordingly.
+     
+3. **Start the Backend Server**
    - Open a terminal and navigate to the `server` directory:
       ```bash
       cd server
       npm start
       ```
 
-3. Start the Frontend Client
+4. Start the Frontend Client
 
    - Open a new terminal and navigate to the `client` directory:
       ```bash
@@ -75,7 +78,7 @@ CEECCCCCCHHHHHHCCCCCCCCCC
       ```
    - Once the server starts, hold `Ctrl` and click on the generated link http://localhost:5173/ to open the web interface in your browser.
    
-4. **Run the Flask API**
+5. **Run the Flask API**
    - Execute the `app.py` script to start the Flask application:
       ```bash
       python app.py
