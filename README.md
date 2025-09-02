@@ -103,7 +103,7 @@ The web interface contains the following tabs:
 
 ## Model Architecture
 
-<img width="3405" height="2320" alt="Neural_Network_Architecture" src="https://github.com/user-attachments/assets/1f343628-4841-4ded-b22a-7bc5cd7ebad8" />
+<img width="594" height="413" alt="image" src="https://github.com/user-attachments/assets/431c69dc-00a4-406a-b9b5-96cf9c81d1a2" />
 
 ## Model Performance
 
