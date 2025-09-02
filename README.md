@@ -101,6 +101,10 @@ The web interface contains the following tabs:
 
 ---
 
+## Model Architecture
+
+<img width="3405" height="2320" alt="Neural_Network_Architecture" src="https://github.com/user-attachments/assets/1f343628-4841-4ded-b22a-7bc5cd7ebad8" />
+
 ## Model Performance
 
 - **Q3 Score (Accuracy)**: 88.99%
