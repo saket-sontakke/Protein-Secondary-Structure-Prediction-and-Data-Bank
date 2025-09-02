@@ -103,7 +103,7 @@ The web interface contains the following tabs:
 
 ## Model Architecture
 
-<img width="594" height="413" alt="image" src="https://github.com/user-attachments/assets/431c69dc-00a4-406a-b9b5-96cf9c81d1a2" />
+<img width="2844" height="1976" alt="abstract_architecture" src="https://github.com/user-attachments/assets/61a91c16-1e50-4c2c-98da-fd02bcab00a6" />
 
 ## Model Performance
 
