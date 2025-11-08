@@ -25,7 +25,7 @@ CEECCCCCCHHHHHHCCCCCCCCCC
 ```
 
 ---
-> [!TIP]
+> [!NOTE]
 > Dataset link: https://www.dropbox.com/scl/fi/08g0zngql2h1u6fgzzop3/list_merged_no_X_no_dups_cleaned_final.csv?rlkey=quoypqqfb2z0jndkexvbsbhx1&st=xju3zlz4&dl=0
 ---
 
@@ -38,8 +38,8 @@ CEECCCCCCHHHHHHCCCCCCCCCC
    - Download `best_model_kernel_5.h5` (pre-trained model) from dropbox link - 
      https://www.dropbox.com/scl/fi/uyor3rqikf817ck6nxubt/best_model_kernel_5.h5?rlkey=zmiqmw3hct0ooeo72dsrivxrv&st=3ivqb1ow&dl=0.
    - Move the downloaded `best_model_kernel_5.h5` file to `Protein-Secondary-Structure-Prediction-and-Data-Bank\PSSP`.
-   > [!CAUTION]
-   > Make sure the file name is `best_model_kernel_5.h5` and not renamed to `best_model_kernel_5 (1).h5` or something else while downloading.
+> [!CAUTION]
+> Make sure the file name is `best_model_kernel_5.h5` and not renamed to `best_model_kernel_5 (1).h5` or something else while downloading.
 
 1. **Install Dependencies**
    - Open a terminal and navigate to the server directory:
