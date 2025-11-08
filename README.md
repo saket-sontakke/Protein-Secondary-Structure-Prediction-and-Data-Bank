@@ -108,15 +108,17 @@ The web interface contains the following tabs:
 ## Model Performance
 
 - **Q3 Score (Accuracy)**: 88.99%
-- **Confusion Matrix**:
-
-![output](https://github.com/user-attachments/assets/d9b946ea-4caa-4b65-a92d-516008e7bee4)
-![confusion_matrix](https://github.com/user-attachments/assets/fd97828e-a57a-4ea0-b303-2c0ed3528a8c)
 
 - **Classification Report**:
 
 ![classification_report](https://github.com/user-attachments/assets/b6cc79bf-17d7-4c9b-8891-5008d74a8ba2)
   
+- **Confusion Matrix**:
+
+![output](https://github.com/user-attachments/assets/d9b946ea-4caa-4b65-a92d-516008e7bee4)
+![confusion_matrix](https://github.com/user-attachments/assets/fd97828e-a57a-4ea0-b303-2c0ed3528a8c)
+
+
 ---
 
 ## Technology Stack
