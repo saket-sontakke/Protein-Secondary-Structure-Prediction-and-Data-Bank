@@ -173,8 +173,8 @@ def process_dssp_for_csv(input_csv, output_csv, rest_url):
 
 if __name__ == "__main__":
     # Define the input and output CSV paths and the REST URL
-    input_csv = "input.csv"  # Replace with the path to your input CSV file
-    output_csv = "output_with_dssp.csv"  # The path for the output CSV file
+    input_csv = "pdb_input.csv"  # Replace with the path to your input CSV file
+    output_csv = "data_bank.csv"  # The path for the output CSV file
     rest_url = "https://www3.cmbi.umcn.nl/xssp/"
 
     # Process DSSP data for each PDB ID in the input CSV and save to a new file
