@@ -149,7 +149,6 @@ The web interface contains the following tabs:
 
 ## Screenshots
 
-![Screenshot 2025-01-05 131020](https://github.com/user-attachments/assets/5ff9fb5f-1510-4207-b055-b18e6e198801)
 ![Screenshot 2025-05-02 223739](https://github.com/user-attachments/assets/95b70f4f-01b0-4d9d-b269-24e0d506954c)
 ![Screenshot 2025-01-05 131056](https://github.com/user-attachments/assets/da7b71d5-4527-4e96-8b0b-c4773199f4fc)
 ![Screenshot 2025-05-02 223905](https://github.com/user-attachments/assets/720cfbae-0bab-4507-ac40-4b83242ead63)
