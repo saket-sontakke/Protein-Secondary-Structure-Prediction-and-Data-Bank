@@ -43,6 +43,59 @@
 
 ---
 
+Here is a **clickable ASCII-style directory tree**.
+
+I have formatted this using standard text characters combined with Markdown links. You can copy and paste this block directly into your documentation. The structure mimics a tree, but every filename is a functioning link pointing to the anchors you provided.
+
+# Table of Contents
+
+**PSSP/**
+├── [app.py](https://www.google.com/search?q=%23psspapppy)
+├── **client/**
+│   ├── [eslint.config.js](https://www.google.com/search?q=%23psspclienteslintconfigjs)
+│   ├── [index.html](https://www.google.com/search?q=%23psspclientindexhtml)
+│   ├── [vite.config.js](https://www.google.com/search?q=%23psspclientviteconfigjs)
+│   └── **src/**
+│       ├── [App.jsx](https://www.google.com/search?q=%23psspclientsrcappjsx)
+│       ├── [main.jsx](https://www.google.com/search?q=%23psspclientsrcmainjsx)
+│       ├── **Components/**
+│       │   ├── [Admin.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsadminjsx)
+│       │   ├── [DataAnalysis.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsdataanalysisjsx)
+│       │   ├── [DataBank.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsdatabankjsx)
+│       │   ├── [ForgotPassword.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsforgotpasswordjsx)
+│       │   ├── [Forum.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsforumjsx)
+│       │   ├── [FullDataset.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsfulldatasetjsx)
+│       │   ├── [Home.jsx](https://www.google.com/search?q=%23psspclientsrccomponentshomejsx)
+│       │   ├── [Login.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsloginjsx)
+│       │   ├── [NavBar.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsnavbarjsx)
+│       │   ├── [Profile.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsprofilejsx)
+│       │   ├── [RadarChart.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsradarchartjsx)
+│       │   ├── [ResetPassword.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsresetpasswordjsx)
+│       │   ├── [Resources.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsresourcesjsx)
+│       │   ├── [Signup.jsx](https://www.google.com/search?q=%23psspclientsrccomponentssignupjsx)
+│       │   └── [StructurePrediction.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsstructurepredictionjsx)
+│       └── **Styling/**
+│           ├── [Admin.css](https://www.google.com/search?q=%23psspclientsrcstylingadmincss)
+│           ├── [App.css](https://www.google.com/search?q=%23psspclientsrcstylingappcss)
+│           ├── [DataAnalysis.css](https://www.google.com/search?q=%23psspclientsrcstylingdataanalysiscss)
+│           ├── [DataBank.css](https://www.google.com/search?q=%23psspclientsrcstylingdatabankcss)
+│           ├── [FullDataset.css](https://www.google.com/search?q=%23psspclientsrcstylingfulldatasetcss)
+│           ├── [Home.css](https://www.google.com/search?q=%23psspclientsrcstylinghomecss)
+│           ├── [Login.css](https://www.google.com/search?q=%23psspclientsrcstylinglogincss)
+│           ├── [NavBar.css](https://www.google.com/search?q=%23psspclientsrcstylingnavbarcss)
+│           ├── [RadarChart.css](https://www.google.com/search?q=%23psspclientsrcstylingradarchartcss)
+│           ├── [Resources.css](https://www.google.com/search?q=%23psspclientsrcstylingresourcescss)
+│           └── [StructurePrediction.css](https://www.google.com/search?q=%23psspclientsrcstylingstructurepredictioncss)
+└── **server/**
+├── [index.js](https://www.google.com/search?q=%23psspserverindexjs)
+├── **models/**
+│   └── [User.js](https://www.google.com/search?q=%23psspservermodelsuserjs)
+└── **routes/**
+└── [user.js](https://www.google.com/search?q=%23psspserverroutesuserjs)
+
+—-
+
+
 # PSSP\app.py
 _339 LOC | 9.98 KB_
 
@@ -1314,4 +1367,5 @@ This module handles user-related routes in the PSSP server, including signup, lo
 This module ensures secure and user-friendly management of user accounts, enhancing the functionality and security of the PSSP server.
 
 ---
+
 
