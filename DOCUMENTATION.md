@@ -48,51 +48,49 @@ Here is a **clickable ASCII-style directory tree**.
 I have formatted this using standard text characters combined with Markdown links. You can copy and paste this block directly into your documentation. The structure mimics a tree, but every filename is a functioning link pointing to the anchors you provided.
 
 # Table of Contents
-
-**PSSP/**
-├── [app.py](https://www.google.com/search?q=%23psspapppy)
-├── **client/**
-│   ├── [eslint.config.js](https://www.google.com/search?q=%23psspclienteslintconfigjs)
-│   ├── [index.html](https://www.google.com/search?q=%23psspclientindexhtml)
-│   ├── [vite.config.js](https://www.google.com/search?q=%23psspclientviteconfigjs)
-│   └── **src/**
-│       ├── [App.jsx](https://www.google.com/search?q=%23psspclientsrcappjsx)
-│       ├── [main.jsx](https://www.google.com/search?q=%23psspclientsrcmainjsx)
-│       ├── **Components/**
-│       │   ├── [Admin.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsadminjsx)
-│       │   ├── [DataAnalysis.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsdataanalysisjsx)
-│       │   ├── [DataBank.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsdatabankjsx)
-│       │   ├── [ForgotPassword.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsforgotpasswordjsx)
-│       │   ├── [Forum.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsforumjsx)
-│       │   ├── [FullDataset.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsfulldatasetjsx)
-│       │   ├── [Home.jsx](https://www.google.com/search?q=%23psspclientsrccomponentshomejsx)
-│       │   ├── [Login.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsloginjsx)
-│       │   ├── [NavBar.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsnavbarjsx)
-│       │   ├── [Profile.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsprofilejsx)
-│       │   ├── [RadarChart.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsradarchartjsx)
-│       │   ├── [ResetPassword.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsresetpasswordjsx)
-│       │   ├── [Resources.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsresourcesjsx)
-│       │   ├── [Signup.jsx](https://www.google.com/search?q=%23psspclientsrccomponentssignupjsx)
-│       │   └── [StructurePrediction.jsx](https://www.google.com/search?q=%23psspclientsrccomponentsstructurepredictionjsx)
-│       └── **Styling/**
-│           ├── [Admin.css](https://www.google.com/search?q=%23psspclientsrcstylingadmincss)
-│           ├── [App.css](https://www.google.com/search?q=%23psspclientsrcstylingappcss)
-│           ├── [DataAnalysis.css](https://www.google.com/search?q=%23psspclientsrcstylingdataanalysiscss)
-│           ├── [DataBank.css](https://www.google.com/search?q=%23psspclientsrcstylingdatabankcss)
-│           ├── [FullDataset.css](https://www.google.com/search?q=%23psspclientsrcstylingfulldatasetcss)
-│           ├── [Home.css](https://www.google.com/search?q=%23psspclientsrcstylinghomecss)
-│           ├── [Login.css](https://www.google.com/search?q=%23psspclientsrcstylinglogincss)
-│           ├── [NavBar.css](https://www.google.com/search?q=%23psspclientsrcstylingnavbarcss)
-│           ├── [RadarChart.css](https://www.google.com/search?q=%23psspclientsrcstylingradarchartcss)
-│           ├── [Resources.css](https://www.google.com/search?q=%23psspclientsrcstylingresourcescss)
-│           └── [StructurePrediction.css](https://www.google.com/search?q=%23psspclientsrcstylingstructurepredictioncss)
-└── **server/**
-├── [index.js](https://www.google.com/search?q=%23psspserverindexjs)
-├── **models/**
-│   └── [User.js](https://www.google.com/search?q=%23psspservermodelsuserjs)
-└── **routes/**
-└── [user.js](https://www.google.com/search?q=%23psspserverroutesuserjs)
-
+**PSSP/**<br>
+├── [app.py](#psspapppy)<br>
+├── **client/**<br>
+│&nbsp;&nbsp;&nbsp;├── [eslint.config.js](#psspclienteslintconfigjs)<br>
+│&nbsp;&nbsp;&nbsp;├── [index.html](#psspclientindexhtml)<br>
+│&nbsp;&nbsp;&nbsp;├── [vite.config.js](#psspclientviteconfigjs)<br>
+│&nbsp;&nbsp;&nbsp;└── **src/**<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [App.jsx](#psspclientsrcappjsx)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [main.jsx](#psspclientsrcmainjsx)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── **Components/**<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── [Admin.jsx](#psspclientsrccomponentsadminjsx)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── [DataAnalysis.jsx](#psspclientsrccomponentsdataanalysisjsx)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── [DataBank.jsx](#psspclientsrccomponentsdatabankjsx)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── [ForgotPassword.jsx](#psspclientsrccomponentsforgotpasswordjsx)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── [Forum.jsx](#psspclientsrccomponentsforumjsx)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── [FullDataset.jsx](#psspclientsrccomponentsfulldatasetjsx)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── [Home.jsx](#psspclientsrccomponentshomejsx)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── [Login.jsx](#psspclientsrccomponentsloginjsx)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── [NavBar.jsx](#psspclientsrccomponentsnavbarjsx)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── [Profile.jsx](#psspclientsrccomponentsprofilejsx)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── [RadarChart.jsx](#psspclientsrccomponentsradarchartjsx)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── [ResetPassword.jsx](#psspclientsrccomponentsresetpasswordjsx)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── [Resources.jsx](#psspclientsrccomponentsresourcesjsx)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── [Signup.jsx](#psspclientsrccomponentssignupjsx)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── [StructurePrediction.jsx](#psspclientsrccomponentsstructurepredictionjsx)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── **Styling/**<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [Admin.css](#psspclientsrcstylingadmincss)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [App.css](#psspclientsrcstylingappcss)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [DataAnalysis.css](#psspclientsrcstylingdataanalysiscss)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [DataBank.css](#psspclientsrcstylingdatabankcss)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [FullDataset.css](#psspclientsrcstylingfulldatasetcss)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [Home.css](#psspclientsrcstylinghomecss)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [Login.css](#psspclientsrcstylinglogincss)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [NavBar.css](#psspclientsrcstylingnavbarcss)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [RadarChart.css](#psspclientsrcstylingradarchartcss)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [Resources.css](#psspclientsrcstylingresourcescss)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [StructurePrediction.css](#psspclientsrcstylingstructurepredictioncss)<br>
+└── **server/**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [index.js](#psspserverindexjs)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── **models/**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── [User.js](#psspservermodelsuserjs)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;└── **routes/**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [user.js](#psspserverroutesuserjs)
 —-
 
 
@@ -1367,5 +1365,6 @@ This module handles user-related routes in the PSSP server, including signup, lo
 This module ensures secure and user-friendly management of user accounts, enhancing the functionality and security of the PSSP server.
 
 ---
+
 
 
