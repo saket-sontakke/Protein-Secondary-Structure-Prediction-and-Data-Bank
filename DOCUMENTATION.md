@@ -5,49 +5,6 @@
 
 # Table of Contents
 
-- [PSSP\app.py](#psspapppy)
-- [PSSP\client\eslint.config.js](#psspclienteslintconfigjs)
-- [PSSP\client\index.html](#psspclientindexhtml)
-- [PSSP\client\vite.config.js](#psspclientviteconfigjs)
-- [PSSP\client\src\App.jsx](#psspclientsrcappjsx)
-- [PSSP\client\src\main.jsx](#psspclientsrcmainjsx)
-- [PSSP\client\src\Components\Admin.jsx](#psspclientsrccomponentsadminjsx)
-- [PSSP\client\src\Components\DataAnalysis.jsx](#psspclientsrccomponentsdataanalysisjsx)
-- [PSSP\client\src\Components\DataBank.jsx](#psspclientsrccomponentsdatabankjsx)
-- [PSSP\client\src\Components\ForgotPassword.jsx](#psspclientsrccomponentsforgotpasswordjsx)
-- [PSSP\client\src\Components\Forum.jsx](#psspclientsrccomponentsforumjsx)
-- [PSSP\client\src\Components\FullDataset.jsx](#psspclientsrccomponentsfulldatasetjsx)
-- [PSSP\client\src\Components\Home.jsx](#psspclientsrccomponentshomejsx)
-- [PSSP\client\src\Components\Login.jsx](#psspclientsrccomponentsloginjsx)
-- [PSSP\client\src\Components\NavBar.jsx](#psspclientsrccomponentsnavbarjsx)
-- [PSSP\client\src\Components\Profile.jsx](#psspclientsrccomponentsprofilejsx)
-- [PSSP\client\src\Components\RadarChart.jsx](#psspclientsrccomponentsradarchartjsx)
-- [PSSP\client\src\Components\ResetPassword.jsx](#psspclientsrccomponentsresetpasswordjsx)
-- [PSSP\client\src\Components\Resources.jsx](#psspclientsrccomponentsresourcesjsx)
-- [PSSP\client\src\Components\Signup.jsx](#psspclientsrccomponentssignupjsx)
-- [PSSP\client\src\Components\StructurePrediction.jsx](#psspclientsrccomponentsstructurepredictionjsx)
-- [PSSP\client\src\Styling\Admin.css](#psspclientsrcstylingadmincss)
-- [PSSP\client\src\Styling\App.css](#psspclientsrcstylingappcss)
-- [PSSP\client\src\Styling\DataAnalysis.css](#psspclientsrcstylingdataanalysiscss)
-- [PSSP\client\src\Styling\DataBank.css](#psspclientsrcstylingdatabankcss)
-- [PSSP\client\src\Styling\FullDataset.css](#psspclientsrcstylingfulldatasetcss)
-- [PSSP\client\src\Styling\Home.css](#psspclientsrcstylinghomecss)
-- [PSSP\client\src\Styling\Login.css](#psspclientsrcstylinglogincss)
-- [PSSP\client\src\Styling\NavBar.css](#psspclientsrcstylingnavbarcss)
-- [PSSP\client\src\Styling\RadarChart.css](#psspclientsrcstylingradarchartcss)
-- [PSSP\client\src\Styling\Resources.css](#psspclientsrcstylingresourcescss)
-- [PSSP\client\src\Styling\StructurePrediction.css](#psspclientsrcstylingstructurepredictioncss)
-- [PSSP\server\index.js](#psspserverindexjs)
-- [PSSP\server\models\User.js](#psspservermodelsuserjs)
-- [PSSP\server\routes\user.js](#psspserverroutesuserjs)
-
----
-
-Here is a **clickable ASCII-style directory tree**.
-
-I have formatted this using standard text characters combined with Markdown links. You can copy and paste this block directly into your documentation. The structure mimics a tree, but every filename is a functioning link pointing to the anchors you provided.
-
-# Table of Contents
 **PSSP/**<br>
 ├── [app.py](#psspapppy)<br>
 ├── **client/**<br>
@@ -91,8 +48,10 @@ I have formatted this using standard text characters combined with Markdown link
 &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── [User.js](#psspservermodelsuserjs)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;└── **routes/**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [user.js](#psspserverroutesuserjs)
-—-
 
+<br>
+
+---
 
 # PSSP\app.py
 _339 LOC | 9.98 KB_
@@ -1365,6 +1324,7 @@ This module handles user-related routes in the PSSP server, including signup, lo
 This module ensures secure and user-friendly management of user accounts, enhancing the functionality and security of the PSSP server.
 
 ---
+
 
 
 
