@@ -49,8 +49,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;└── **routes/**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [user.js](#psspserverroutesuserjs)
 
-<br>
-
 ---
 
 # PSSP\app.py
@@ -1324,6 +1322,7 @@ This module handles user-related routes in the PSSP server, including signup, lo
 This module ensures secure and user-friendly management of user accounts, enhancing the functionality and security of the PSSP server.
 
 ---
+
 
 
 
