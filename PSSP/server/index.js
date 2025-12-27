@@ -11,10 +11,15 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-app.use(cors({
-    origin: process.env.CLIENT_URL,
-    credentials: true
-}));
+
+// --- DEPLOYMENT CHANGE: Allow all origins for now ---
+app.use(cors()); 
+// Once deployed, you can revert to your strict config:
+// app.use(cors({
+//     origin: process.env.CLIENT_URL,
+//     credentials: true
+// }));
+
 app.use(cookieParser());
 
 const mongoURI = process.env.MONGO_URI;
@@ -122,7 +127,8 @@ app.use((req, res) => {
     res.status(404).json({ error: 'Route not found' });
 });
 
-const PORT = process.env.PORT;
+// --- DEPLOYMENT CHANGE: Added fallback port ---
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}...`);
 });
