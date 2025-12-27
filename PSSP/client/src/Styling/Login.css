@@ -1,0 +1,90 @@
+
+.login-body {
+  font-family: 'Arial', sans-serif;
+  background-color: #eae7dd;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  /* width: 100vw;  */
+  justify-content: center; /* Center login container */
+  align-items: center; /* Vertical center */
+  margin: 0;
+  padding: 0;
+  background-image: url("./media/graphics.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+
+/* Container Styles */
+.sign-up-container {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+  width: auto; /* Automatically adjusts to content */
+  height: auto; /* Automatically adjusts to content */
+  min-width: 380px; /* Minimum width to ensure a good layout */
+  max-width: 100%; /* Maximum width to avoid being too large on bigger screens */
+  min-height: 450px; /* Minimum height */
+  max-height: 90vh; /* Maximum height to avoid overflow */
+  transition: all 0.3s ease; /* Smooth transition when switching */
+}
+
+
+/* Title Styles */
+.sign-up-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333333;
+}
+
+/* Form Styles */
+.sign-up-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label Styles */
+.sign-up-form label {
+  font-size: 14px;
+  color: #555555;
+  margin-bottom: 5px;
+}
+
+/* Input Styles */
+.sign-up-form input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #999999;
+  /* Darkened border */
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Input Focus Styles */
+.sign-up-form input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+/* Button Styles */
+.sign-up-form button {
+  padding: 10px;
+  background-color: #8c6549e3;
+  color: #ffffff;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Button Hover Styles */
+.sign-up-form button:hover {
+  background-color: #8c6549;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
