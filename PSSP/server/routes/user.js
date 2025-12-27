@@ -61,7 +61,13 @@ router.post('/login', async (req, res) => {
     }
 
     const token = jwt.sign({ username: user.username, role: user.role }, process.env.KEY, { expiresIn: '1h' });
-    res.cookie('token', token, { httpOnly: true, maxAge: 3600000 });
+    // res.cookie('token', token, { httpOnly: true, maxAge: 3600000 });
+    res.cookie('token', token, { 
+        httpOnly: true, 
+        secure: true,       // <--- REQUIRED for HTTPS
+        sameSite: 'none',   // <--- REQUIRED for Cross-Site (Frontend <-> Backend)
+        maxAge: 3600000     // 1 hour
+    });
     
     return res.json({ status: true, message: "Login successful" });
 });
