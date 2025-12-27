@@ -1,6 +1,8 @@
-   # Protein Secondary Structure Prediction using Hybrid Neural Networks (CNN+BiLSTM+BiGRU)
+# Protein Secondary Structure Prediction using Hybrid Neural Networks (CNN+BiLSTM+BiGRU)
 
 This project leverages a hybrid deep learning architecture combining Convolutional Neural Networks (CNNs), Bidirectional Long Short-Term Memory (BiLSTM), and Bidirectional Gated Recurrent Units (BiGRU) for accurate prediction of protein secondary structures.
+
+## Published Paper: https://thegrenze.com/index.php?display=page&view=journalabstract&absid=5860&id=8 
 
 ---
 
