@@ -9,7 +9,11 @@ from flask_cors import CORS
 import numpy as np
 
 app = Flask(__name__)
-CORS(app)
+
+# Get the allowed origin from ENV, or default to '*' (allow all) for safety
+frontend_url = os.environ.get('FRONTEND_URL', '*')
+
+CORS(app, resources={r"/*": {"origins": frontend_url}})
 
 # -------------------------
 #     FIX: KERAS 3 SUPPORT
