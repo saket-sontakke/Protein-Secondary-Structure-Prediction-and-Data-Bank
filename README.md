@@ -2,6 +2,8 @@
 
 This project leverages a hybrid deep learning architecture combining Convolutional Neural Networks (CNNs), Bidirectional Long Short-Term Memory (BiLSTM), and Bidirectional Gated Recurrent Units (BiGRU) for accurate prediction of protein secondary structures.
 
+[![Website](https://img.shields.io/badge/Website-saket-sontakke-pssp.onrender.com-blue)]([https://quail.edarts.online](https://saket-sontakke-pssp.onrender.com))
+
 ## Published Paper: https://thegrenze.com/index.php?display=page&view=journalabstract&absid=5860&id=8 
 
 ---
