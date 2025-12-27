@@ -12,13 +12,14 @@ const app = express();
 
 app.use(express.json());
 
-// --- DEPLOYMENT CHANGE: Allow all origins for now ---
-app.use(cors()); 
-// Once deployed, you can revert to your strict config:
-// app.use(cors({
-//     origin: process.env.CLIENT_URL,
-//     credentials: true
-// }));
+// Get the frontend URL from the environment variable
+const clientURL = process.env.CLIENT_URL;
+
+// Configure CORS to trust ONLY that specific URL
+app.use(cors({
+    origin: clientURL, // This must match your frontend URL (no trailing slash)
+    credentials: true  // This allows cookies to be sent
+}));
 
 app.use(cookieParser());
 
