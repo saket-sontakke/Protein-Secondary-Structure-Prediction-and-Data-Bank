@@ -30,7 +30,7 @@ CEECCCCCCHHHHHHCCCCCCCCCC
 
 ## Project Overview
 
-### Steps to Run the Project
+### Steps to Run the Project on Localhost
 
 1. **Download the Project**
    - Download and extract the zip file.
