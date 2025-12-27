@@ -72,6 +72,24 @@ router.post('/login', async (req, res) => {
     return res.json({ status: true, message: "Login successful" });
 });
 
+router.post('/guest-login', (req, res) => {
+    // 1. Generate a random temporary ID
+    const guestId = 'guest_' + Math.random().toString(36).substr(2, 9);
+    
+    // 2. Create a token exactly like you do for normal Login
+    // But set the role to 'Guest' explicitly
+    const token = jwt.sign(
+        { username: "Guest", id: guestId, role: "Guest" }, 
+        process.env.KEY, 
+        { expiresIn: '1h' }
+    );
+
+    // 3. Set the cookie
+    res.cookie('token', token, { httpOnly: true, maxAge: 3600000 });
+    
+    return res.json({ status: true, message: "Logged in as Guest" });
+});
+
 router.post('/forgot-password', async (req, res) => {
     const { email } = req.body;
 
@@ -96,7 +114,7 @@ router.post('/forgot-password', async (req, res) => {
             from: process.env.EMAIL_USER,
             to: email,
             subject: 'Reset Password',
-            text: `http://localhost:5173/resetPassword/${token}`
+            text: `${process.env.CLIENT_URL}/resetPassword/${token}`
         };
 
         transporter.sendMail(mailOptions, function (error, info) {
