@@ -108,6 +108,14 @@ def decode_prediction(predictions):
 
 
 # -------------------------
+#       HEALTH CHECK
+# -------------------------
+@app.route('/', methods=['GET'])
+def health_check():
+    return jsonify({'status': 'Model is ready!', 'model_input': str(model.input_shape)}), 200
+
+
+# -------------------------
 #       API ENDPOINT
 # -------------------------
 @app.route('/predict', methods=['POST'])
