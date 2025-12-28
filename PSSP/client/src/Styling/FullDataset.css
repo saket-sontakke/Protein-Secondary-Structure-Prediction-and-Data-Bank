@@ -155,3 +155,30 @@
         font-size: 0.9em;
     }
 }
+
+/* --- Loading Spinner Animation --- */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.icon-spin {
+  animation: spin 1s linear infinite;
+  font-size: 2rem; /* Size of the spinner */
+  color: #8c6549;   /* Theme color */
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh; /* Center vertically relative to the viewport height */
+    width: 100%;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.loading-container p {
+    font-size: 1.1rem;
+    color: #555;
+}
