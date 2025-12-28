@@ -155,7 +155,7 @@ const StructurePrediction = () => {
                 <p>
                     <strong>Note:</strong> The AI model powering this tool is computationally intensive. 
                     <strong> Due to resource limits </strong> on the free deployment server (Render), <strong>the live prediction 
-                    feature below may Fail to retrieve structure.</strong>
+                    feature below may fail to retrieve structure.</strong>
                 </p>
                 <p>
                     However, the model is fully functional! You can view screenshots of actual outputs below, 
@@ -315,5 +315,6 @@ const StructurePrediction = () => {
         </div>
     );
 };
+
 
 export default StructurePrediction;
