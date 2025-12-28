@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
+import { FaSpinner } from 'react-icons/fa'; // Import Spinner
 import '../Styling/FullDataset.css';
 
 const baseUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
 
 const FullDataset = () => {
+  // Loading state
+  const [loading, setLoading] = useState(true);
+
   const [lengthData, setLengthData] = useState({
     lengthsA: [], lengthsB: [], lengthsC: [],
     molecularWeights: [], atomCounts: [],
@@ -24,28 +28,44 @@ const FullDataset = () => {
 
   // Fetch data when component loads
   useEffect(() => {
-    Axios.get(`${baseUrl}/visualize`)
-      .then((response) => {
-        const lengthsA = response.data.map(item => item['Length a']);
-        const lengthsB = response.data.map(item => item['Length b']);
-        const lengthsC = response.data.map(item => item['Length c']);
-        const molecularWeights = response.data.map(item => item['Molecular Weight']);
-        const atomCounts = response.data.map(item => item['Deposited Atom Count']);
-        const spaceGroups = response.data.map(item => item['Space Group']);
-        const anglesAlpha = response.data.map(item => item['Angle Alpha']);
-        const anglesBeta = response.data.map(item => item['Angle Beta']);
-        const anglesGamma = response.data.map(item => item['Angle Gamma']);
+    const fetchData = async () => {
+      setLoading(true); // Start loading
+
+      try {
+        // Fetch both endpoints simultaneously
+        const [visualizeRes, fullDatasetRes] = await Promise.all([
+          Axios.get(`${baseUrl}/visualize`),
+          Axios.get(`${baseUrl}/fulldataset`)
+        ]);
+
+        // Process Visualization Data
+        const lengthsA = visualizeRes.data.map(item => item['Length a']);
+        const lengthsB = visualizeRes.data.map(item => item['Length b']);
+        const lengthsC = visualizeRes.data.map(item => item['Length c']);
+        const molecularWeights = visualizeRes.data.map(item => item['Molecular Weight']);
+        const atomCounts = visualizeRes.data.map(item => item['Deposited Atom Count']);
+        const spaceGroups = visualizeRes.data.map(item => item['Space Group']);
+        const anglesAlpha = visualizeRes.data.map(item => item['Angle Alpha']);
+        const anglesBeta = visualizeRes.data.map(item => item['Angle Beta']);
+        const anglesGamma = visualizeRes.data.map(item => item['Angle Gamma']);
+
         setLengthData({
           lengthsA, lengthsB, lengthsC,
           molecularWeights, atomCounts,
           spaceGroups, anglesAlpha, anglesBeta, anglesGamma
         });
-      })
-      .catch((error) => console.error('Error fetching data:', error));
 
-    Axios.get(`${baseUrl}/fulldataset`)
-      .then((response) => setDataHead(response.data.data)) 
-      .catch((error) => console.error('Error fetching dataset head:', error));
+        // Process Table Data
+        setDataHead(fullDatasetRes.data.data);
+
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false); // Stop loading regardless of success/failure
+      }
+    };
+
+    fetchData();
   }, []);
 
   const handleSearchChange = (event) => {
@@ -80,6 +100,19 @@ const FullDataset = () => {
     setItemsPerPage(Number(event.target.value));
     setCurrentPage(1);
   };
+
+  // Render Spinner if loading
+  if (loading) {
+    return (
+      <div className='full-dataset'>
+         <h1>Dataset</h1>
+         <div className="loading-container">
+            <FaSpinner className="icon-spin" />
+            <p>Loading full dataset...</p>
+         </div>
+      </div>
+    );
+  }
 
   return (
     <div className='full-dataset'>
