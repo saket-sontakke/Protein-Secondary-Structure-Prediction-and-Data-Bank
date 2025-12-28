@@ -85,7 +85,12 @@ router.post('/guest-login', (req, res) => {
     );
 
     // 3. Set the cookie
-    res.cookie('token', token, { httpOnly: true, maxAge: 3600000 });
+    res.cookie('token', token, { 
+        httpOnly: true, 
+        secure: true,       // REQUIRED for HTTPS (Render)
+        sameSite: 'none',   // REQUIRED for Cross-Site cookies
+        maxAge: 3600000 
+    });
     
     return res.json({ status: true, message: "Logged in as Guest" });
 });
