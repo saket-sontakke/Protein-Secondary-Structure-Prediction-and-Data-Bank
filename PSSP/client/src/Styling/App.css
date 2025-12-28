@@ -1,0 +1,58 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: 'Arial', sans-serif;
+  background-color: #eae7dd;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1350px; 
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.main-content {
+  /* Default Desktop: Account for fixed header height */
+  margin-top: 70px; 
+  padding: 20px;
+  flex: 1;
+  width: 100%;
+}
+
+.footer {
+  background-color: #8c6549;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  /* Changed to relative/auto to prevent covering content on small screens */
+  margin-top: auto; 
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .container {
+      padding: 10px;
+  }
+  
+  .main-content {
+      /* Mobile: Navbar becomes relative, so we remove the top margin */
+      margin-top: 0;
+      padding: 10px;
+  }
+}

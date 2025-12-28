@@ -1,0 +1,37 @@
+.chart-container {
+    padding: 10px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 20px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), 0 15px 40px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(145deg, #ffffff, #ffffff);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #d3d3d3;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    box-sizing: border-box;
+    overflow: hidden; /* CRITICAL FIX: Ensures the chart doesn't force the container wider than the screen */
+}
+
+.chart-container canvas, .chart-container svg {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+    .chart-container {
+        width: 100%;
+        min-height: 300px; /* Reduced slightly to fit better on small screens */
+        padding: 5px; /* Less padding on mobile */
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 10px;
+    }
+}

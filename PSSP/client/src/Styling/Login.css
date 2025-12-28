@@ -1,0 +1,153 @@
+.login-body {
+  font-family: 'Arial', sans-serif;
+  background-color: #eae7dd;
+  display: flex;
+  min-height: 100vh; /* Better than fixed height for mobile browsers */
+  width: 100%;
+  justify-content: center; 
+  align-items: center; 
+  margin: 0;
+  padding: 0;
+  background-image: url("./media/graphics.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Container Styles */
+.sign-up-container {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+  
+  /* Responsive Width Logic */
+  width: 90%; /* Occupy 90% of screen width on mobile */
+  max-width: 400px; /* Cap width on desktop */
+  
+  height: auto; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px; /* Ensure spacing from edges */
+  box-sizing: border-box; 
+}
+
+/* Title Styles */
+.sign-up-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333333;
+  font-size: 1.5rem; 
+}
+
+/* Form Styles */
+.sign-up-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Label Styles */
+.sign-up-form label {
+  font-size: 14px;
+  color: #555555;
+  margin-bottom: 5px;
+  margin-top: 10px; 
+}
+
+/* Input Styles */
+.sign-up-form input {
+  padding: 12px; /* Larger touch target */
+  margin-bottom: 10px;
+  border: 1px solid #999999;
+  border-radius: 5px;
+  font-size: 16px; /* Prevent zoom on iOS inputs */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Radio Button Group Styling */
+.sign-up-form div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.sign-up-form input[type="radio"] {
+  width: auto;
+  margin-bottom: 0;
+  margin-right: 5px;
+}
+
+/* Input Focus Styles */
+.sign-up-form input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+/* Button Styles */
+.sign-up-form button {
+  padding: 12px;
+  background-color: #8c6549e3;
+  color: #ffffff;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+}
+
+.sign-up-form button:hover {
+  background-color: #8c6549;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.guest-btn {
+    background-color: #6c757d; 
+}
+
+.sign-up-form p {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+
+.sign-up-form a {
+    color: #8c6549;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 480px) {
+  .sign-up-container {
+      padding: 25px; /* Reduced padding on small screens */
+      width: 95%; 
+  }
+
+  .sign-up-container h2 {
+      font-size: 1.3rem;
+  }
+}
+
+/* --- Loading Spinner Animation --- */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.icon-spin {
+  animation: spin 1s linear infinite;
+  margin-right: 5px;
+}
+
+button:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+  opacity: 0.7;
+}

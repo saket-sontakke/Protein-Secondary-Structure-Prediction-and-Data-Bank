@@ -1,0 +1,167 @@
+.analysis {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f3ef;
+    color: #333;
+    padding: 2rem;
+    width: 95%; /* Responsive width */
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem; /* Reduced for better mobile fit */
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.analysis h1 {
+    text-align: center;
+    color: #8c6549;
+    font-size: 2em;
+    margin-bottom: 2rem;
+}
+
+.analysis p {
+    text-align: justify; /* Justifies the text edges */
+    line-height: 1.6;    /* Adds breathing room for justified text */
+    margin-bottom: 1.5rem;
+}
+
+.table-container {
+    margin-top: 2rem;
+    width: 100%;
+    /* KEY: Allows scrolling for wide tables on mobile */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; 
+}
+
+.analysis table {
+    width: 100%;
+    min-width: 800px; /* Forces table to keep shape and trigger scroll */
+    margin: 0 auto; 
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.analysis table thead th {
+    background-color: #a67555;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 1em;
+    text-align: center;
+    border: 1px solid #ddd;
+    white-space: nowrap;
+}
+
+.analysis table tbody td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 1em;
+    text-align: center;
+}
+
+.analysis table tbody tr:nth-child(even) {
+    background-color: #eee5de;
+}
+
+.analysis table tbody tr:hover {
+    background-color: #eae0d6;
+}
+
+.plots {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+    width: 100%;
+}
+  
+.copy-icon {
+    color: #333;
+    transition: color 0.3s ease;
+}
+  
+.copy-icon:hover {
+    color: #007bff;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.view-dataset-button {
+    padding: 10px 20px;
+    background-color: #8c6549;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    display: block; 
+    margin: 0 auto;
+    max-width: 100%; 
+}
+
+.view-dataset-button:hover {
+    background-color: #a67555; 
+}
+
+.entry-count {
+    margin-top: 1rem;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    padding: 0.5rem 1rem;
+    background-color: #f9f9f9; 
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    display: inline-block;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .analysis {
+        padding: 1rem;
+        width: 100%;
+        border-radius: 15px;
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    .analysis h1 {
+        font-size: 1.5rem;
+    }
+
+    .plots {
+        padding: 0;
+        margin-top: 2rem;
+    }
+}
+
+/* --- Loading Spinner --- */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.icon-spin {
+  animation: spin 1s linear infinite;
+  font-size: 2rem; /* Larger spinner for the main page load */
+  color: #8c6549;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh; /* Center vertically in the viewport area */
+    width: 100%;
+    flex-direction: column;
+    gap: 15px;
+}

@@ -1,0 +1,95 @@
+.navbar {
+  background-color: #8c6549; 
+  padding: 1rem;
+  border-radius: 0 0 4px 4px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Removed margin-bottom here as it's handled by main-content padding/margin */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  width: 100%;
+}
+
+.nav-links li {
+  margin: 0 0.5rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  background-color: transparent; /* Cleaner look */
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-links a:hover {
+  background-color: #735540;
+}
+
+.nav-links a:active {
+  background-color: #5a3f2e;
+}
+
+.profile-section {
+  min-width: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Responsive Navigation */
+@media (max-width: 900px) {
+  .navbar {
+      /* Make relative on mobile so it pushes content down instead of floating over */
+      position: relative; 
+      flex-direction: column;
+      padding: 0.5rem;
+  }
+
+  .nav-links {
+      flex-direction: column;
+      text-align: center;
+      width: 100%;
+  }
+  
+  .nav-links li {
+      margin: 5px 0;
+      width: 100%;
+  }
+
+  .nav-links a {
+      display: block; /* Full width click area */
+      background-color: #8c6549; /* Restore background for block look */
+  }
+
+  .profile-section {
+      margin-top: 10px;
+  }
+}
+
+.nav-links li.active a {
+  color: #ffffff; 
+  font-weight: bold;
+  border-bottom: 2px solid #ffffff; 
+}
