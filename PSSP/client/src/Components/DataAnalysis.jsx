@@ -368,8 +368,6 @@
 
 
 
-
-
 import React, { useState, useEffect } from 'react';
 import Plot from 'react-plotly.js';
 import Axios from 'axios';
@@ -384,7 +382,6 @@ const baseUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
 const DataAnalysis = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  // Added a progress state to show user it's working
   const [loadingProgress, setLoadingProgress] = useState(0); 
 
   const [lengthData, setLengthData] = useState({
@@ -397,7 +394,7 @@ const DataAnalysis = () => {
   const [expandedCells, setExpandedCells] = useState({}); 
   const [entryCount, setEntryCount] = useState(0); 
 
-  // --- NEW: Helper function to fetch all chunks ---
+  // Helper function to fetch all chunks
   const fetchAllChunks = async (endpoint) => {
     let allData = [];
     let page = 0;
@@ -410,7 +407,7 @@ const DataAnalysis = () => {
 
         if (chunk && chunk.length > 0) {
           allData = [...allData, ...chunk];
-          setLoadingProgress((prev) => prev + chunk.length); // Update counter
+          setLoadingProgress((prev) => prev + chunk.length);
           page++;
         } else {
           keepFetching = false;
@@ -428,14 +425,14 @@ const DataAnalysis = () => {
 
     const fetchData = async () => {
       try {
-        // 1. Fetch Head (Small request, do normally)
+        // 1. Fetch Head
         const headRes = await Axios.get(`${baseUrl}/databank-head`);
         setDataHead(headRes.data);
 
         // 2. Fetch Visualization Data in Chunks
         const fullVisualData = await fetchAllChunks('visualize');
 
-        // 3. Process the complete dataset
+        // 3. Process Data
         const lengthsA = fullVisualData.map(item => item['Length a']);
         const lengthsB = fullVisualData.map(item => item['Length b']);
         const lengthsC = fullVisualData.map(item => item['Length c']);
@@ -495,33 +492,30 @@ const DataAnalysis = () => {
     <div className='analysis'>
       <h1>Data Analysis</h1>
       <h2>Protein Database</h2>
-      <p>
-        A protein database is a valuable resource for researchers...
-      </p>
-       <p className="entry-count">Number of entries in the dataset: {entryCount}</p>
+      <p>A protein database is a valuable resource...</p>
+      <p className="entry-count">Number of entries in the dataset: {entryCount}</p>
 
-      {/* Table Section (Same as before) */}
       <div className="table-container">
         <table className="data-table">
           <thead>
             <tr>
               <th>PDB ID</th>
               <th>Chain Code</th>
-              <th>Input <br/>(FASTA Sequence)</th>
-              <th>DSSP3 <br/>(3-state)</th>
-              <th>DSSP8 <br/>(8-state)</th>
-              <th>Length a (Å)</th>
-              <th>Length b (Å)</th>
-              <th>Length c (Å)</th>
-              <th>Angle Alpha (°)</th>
-              <th>Angle Beta (°)</th>
-              <th>Angle Gamma (°)</th>
+              <th>Input (FASTA)</th>
+              <th>DSSP3</th>
+              <th>DSSP8</th>
+              <th>Length a</th>
+              <th>Length b</th>
+              <th>Length c</th>
+              <th>Angle Alpha</th>
+              <th>Angle Beta</th>
+              <th>Angle Gamma</th>
               <th>Space Group</th>
-              <th>Molecular Weight (kDa)</th>
-              <th>Deposited Atom Count</th>
-              <th>Polymer Monomer Count</th>
-              <th>Modeled Polymer Monomer Count</th>
-              <th>Unmodeled Polymer Monomer Count</th>
+              <th>Mol Weight</th>
+              <th>Atom Count</th>
+              <th>Polymer Count</th>
+              <th>Modeled</th>
+              <th>Unmodeled</th>
             </tr>
           </thead>
           <tbody>
@@ -529,24 +523,23 @@ const DataAnalysis = () => {
               <tr key={index}>
                 <td>{row.pdb_id}</td>
                 <td>{row.chain_code}</td>
-                {/* ... (Your existing table rows) ... */}
                 <td>
                   <span onClick={() => toggleCellExpansion('input')} style={{ cursor: 'pointer' }}>
                     {expandedCells['input'] ? row.input : `${row.input.substring(0, 10)}...`}
                   </span>
-                  <FontAwesomeIcon icon={faCopy} onClick={() => copyToClipboard(row.input)} className="copy-icon" style={{ cursor: 'pointer', marginLeft: '8px' }} />
+                  <FontAwesomeIcon icon={faCopy} onClick={() => copyToClipboard(row.input)} className="copy-icon" style={{ marginLeft: '8px' }} />
                 </td>
                 <td>
                   <span onClick={() => toggleCellExpansion('dssp3')} style={{ cursor: 'pointer' }}>
                     {expandedCells['dssp3'] ? row.dssp3 : `${row.dssp3.substring(0, 10)}...`}
                   </span>
-                  <FontAwesomeIcon icon={faCopy} onClick={() => copyToClipboard(row.dssp3)} className="copy-icon" style={{ cursor: 'pointer', marginLeft: '8px' }} />
+                  <FontAwesomeIcon icon={faCopy} onClick={() => copyToClipboard(row.dssp3)} className="copy-icon" style={{ marginLeft: '8px' }} />
                 </td>
                 <td>
                   <span onClick={() => toggleCellExpansion('dssp8')} style={{ cursor: 'pointer' }}>
                     {expandedCells['dssp8'] ? row.dssp8 : `${row.dssp8.substring(0, 10)}...`}
                   </span>
-                  <FontAwesomeIcon icon={faCopy} onClick={() => copyToClipboard(row.dssp8)} className="copy-icon" style={{ cursor: 'pointer', marginLeft: '8px' }} />
+                  <FontAwesomeIcon icon={faCopy} onClick={() => copyToClipboard(row.dssp8)} className="copy-icon" style={{ marginLeft: '8px' }} />
                 </td>
                 <td>{row['Length a']}</td>
                 <td>{row['Length b']}</td>
@@ -567,21 +560,14 @@ const DataAnalysis = () => {
       </div>
       
       <p style={{ marginBottom: '1rem' }}>
-      For detailed dataset description 
-      <span onClick={() => navigate('/Resources')} style={{ cursor: 'pointer', color: 'blue', marginLeft: '5px'}}>
-        click here.
-      </span>
-    </p>
+        For detailed dataset description <span onClick={() => navigate('/Resources')} style={{ cursor: 'pointer', color: 'blue', marginLeft: '5px'}}>click here.</span>
+      </p>
 
-      <button className='view-dataset-button'
-        onClick={() => navigate('/fulldataset')}
-        style={{ padding: '10px 20px', cursor: 'pointer', color: 'white', marginBottom: '20px' }}
-      >
+      <button className='view-dataset-button' onClick={() => navigate('/fulldataset')} style={{ padding: '10px 20px', cursor: 'pointer', color: 'white', marginBottom: '20px' }}>
         View Full Dataset
       </button>
 
-    <div className='plots'>
-      {/* ... (Paste your exact Plot components here, no changes needed to Plots) ... */}
+      <div className='plots'>
        <Plot
         useResizeHandler={true}
         style={plotStyle}
@@ -618,7 +604,7 @@ const DataAnalysis = () => {
           margin: { l: 50, r: 20, b: 50, t: 50 }
         }}
       />
-      {/* (Keep other plots identical) */}
+
        <Plot
         useResizeHandler={true}
         style={plotStyle}
@@ -644,33 +630,33 @@ const DataAnalysis = () => {
       />
 
       <Plot
-      useResizeHandler={true}
-      style={plotStyle}
-      config={plotConfig}
-      data={[
-        {
-          x: lengthData.molecularWeights,
-          y: lengthData.atomCounts,
-          mode: 'markers',
-          marker: {
-            size: 8,
-            color: lengthData.spaceGroups.map((group, index) => index),
-            colorscale: 'Viridis',
-          },
-          hovertemplate: 'Mol Weight: %{x}<br>Atom Count: %{y}<extra></extra>',
-        }
-      ]}
-      layout={{
-        autosize: true,
-        height: 400,
-        title: 'Atom Count vs Molecular Weight',
-        xaxis: { title: 'Molecular Weight' },
-        yaxis: { title: 'Deposited Atom Count' },
-        paper_bgcolor: '#f9f9f9',
-        plot_bgcolor: '#ffffff',
-        margin: { l: 50, r: 20, b: 50, t: 50 }
-      }}
-    />
+        useResizeHandler={true}
+        style={plotStyle}
+        config={plotConfig}
+        data={[
+          {
+            x: lengthData.molecularWeights,
+            y: lengthData.atomCounts,
+            mode: 'markers',
+            marker: {
+              size: 8,
+              color: lengthData.spaceGroups.map((group, index) => index),
+              colorscale: 'Viridis',
+            },
+            hovertemplate: 'Mol Weight: %{x}<br>Atom Count: %{y}<extra></extra>',
+          }
+        ]}
+        layout={{
+          autosize: true,
+          height: 400,
+          title: 'Atom Count vs Molecular Weight',
+          xaxis: { title: 'Molecular Weight' },
+          yaxis: { title: 'Deposited Atom Count' },
+          paper_bgcolor: '#f9f9f9',
+          plot_bgcolor: '#ffffff',
+          margin: { l: 50, r: 20, b: 50, t: 50 }
+        }}
+      />
 
       <Plot
         useResizeHandler={true}
@@ -700,7 +686,6 @@ const DataAnalysis = () => {
           margin: { l: 0, r: 0, b: 0, t: 40 },
         }}
       />
-
 
        <Plot
         useResizeHandler={true}
@@ -732,7 +717,6 @@ const DataAnalysis = () => {
         }}
       />
     </div>
-
     </div>
   );
 };
