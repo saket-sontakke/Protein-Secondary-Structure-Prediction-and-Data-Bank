@@ -1,10 +1,157 @@
+// import express from 'express';
+// import dotenv from 'dotenv';
+// import mongoose from 'mongoose';
+// import cors from 'cors';
+// import cookieParser from 'cookie-parser';
+// import axios from 'axios';
+
+// import { UserRouter } from './routes/user.js';
+
+// dotenv.config();
+// const app = express();
+
+// app.use(express.json());
+
+// // Get the frontend URL from the environment variable
+// const clientURL = process.env.CLIENT_URL;
+
+// // Configure CORS to trust ONLY that specific URL
+// app.use(cors({
+//     origin: clientURL, // This must match your frontend URL (no trailing slash)
+//     credentials: true  // This allows cookies to be sent
+// }));
+
+// app.use(cookieParser());
+
+// const mongoURI = process.env.MONGO_URI;
+
+// mongoose.connect(mongoURI)
+//   .then(() => console.log('Connected to MongoDB'))
+//   .catch((error) => {
+//     console.error('Error connecting to MongoDB:', error.message);
+//     process.exit(1);
+//   });
+
+// process.on('SIGINT', async () => {
+//     await mongoose.connection.close();
+//     console.log('MongoDB connection closed due to app termination');
+//     process.exit(0);
+// });
+
+// app.use('/auth', UserRouter);
+
+// // Structure prediction proxy
+// app.post('/predict', async (req, res) => {
+//     try {
+//         const flaskURL = process.env.FLASK_API_URL;
+//         const response = await axios.post(flaskURL, req.body);
+//         res.json(response.data);
+//     } catch (error) {
+//         console.error('Error while predicting structure:', error.message);
+//         res.status(500).json({ error: 'Error while predicting structure' });
+//     }
+// });
+
+// // Fetch dataset head
+// app.get('/databank-head', async (req, res) => {
+//     try {
+//         const dataBankCollection = mongoose.connection.db.collection('DataBank');
+//         const result = await dataBankCollection.find({}).limit(5).toArray();
+//         res.json(result);
+//     } catch (error) {
+//         console.error('Error fetching dataset head:', error.message);
+//         res.status(500).json({ error: 'Error fetching dataset head' });
+//     }
+// });
+
+// // Visualization fields
+// app.get('/visualize', async (req, res) => {
+//     try {
+//         if (mongoose.connection.readyState !== 1) {
+//             return res.status(500).json({ error: 'Database not connected' });
+//         }
+
+//         const result = await mongoose.connection.db.collection('DataBank')
+//             .find({}, {
+//                 projection: {
+//                     'Length a': 1,
+//                     'Length b': 1,
+//                     'Length c': 1,
+//                     'Angle Alpha': 1,
+//                     'Angle Beta': 1,
+//                     'Angle Gamma': 1,
+//                     'Molecular Weight': 1,
+//                     'Deposited Atom Count': 1,
+//                     'Space Group': 1,
+//                     _id: 0
+//                 }
+//             }).toArray();
+
+//         res.json(result);
+//     } catch (error) {
+//         console.error('Error fetching data for visualization:', error);
+//         res.status(500).json({ error: 'Error fetching data for visualization' });
+//     }
+// });
+
+// // Fetch by PDB ID
+// app.get('/databank/:pdb_id', async (req, res) => {
+//     const { pdb_id } = req.params;
+//     try {
+//         const result = await mongoose.connection.db.collection('DataBank').findOne({ pdb_id });
+//         if (result) res.json(result);
+//         else res.status(404).json({ error: 'No data found for the given pdb_id' });
+//     } catch (error) {
+//         console.error('Error fetching data by pdb_id:', error.message);
+//         res.status(500).json({ error: 'Error fetching data' });
+//     }
+// });
+
+// app.get('/fulldataset', async (req, res) => {
+//     try {
+//         const dataBankCollection = mongoose.connection.db.collection('DataBank');
+
+//         const result = await dataBankCollection.find({}).toArray();
+
+//         res.json({
+//             data: result,
+//             totalEntries: result.length
+//         });
+//     } catch (error) {
+//         console.error('Error fetching full dataset:', error.message);
+//         res.status(500).json({ error: 'Error fetching full dataset' });
+//     }
+// });
+
+
+// app.use((req, res) => {
+//     res.status(404).json({ error: 'Route not found' });
+// });
+
+// // --- DEPLOYMENT CHANGE: Added fallback port ---
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => {
+//     console.log(`Server is running on port ${PORT}...`);
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import axios from 'axios';
-
 import { UserRouter } from './routes/user.js';
 
 dotenv.config();
@@ -12,124 +159,86 @@ const app = express();
 
 app.use(express.json());
 
-// Get the frontend URL from the environment variable
+// 1. CORS Configuration
 const clientURL = process.env.CLIENT_URL;
-
-// Configure CORS to trust ONLY that specific URL
 app.use(cors({
-    origin: clientURL, // This must match your frontend URL (no trailing slash)
-    credentials: true  // This allows cookies to be sent
+    origin: clientURL,
+    credentials: true
 }));
 
 app.use(cookieParser());
 
+// 2. Database Connection (Optimized for Serverless)
+// In serverless, we don't want to reconnect on every single request if we can avoid it.
 const mongoURI = process.env.MONGO_URI;
-
 mongoose.connect(mongoURI)
   .then(() => console.log('Connected to MongoDB'))
-  .catch((error) => {
-    console.error('Error connecting to MongoDB:', error.message);
-    process.exit(1);
-  });
+  .catch((error) => console.error('Error connecting to MongoDB:', error.message));
 
-process.on('SIGINT', async () => {
-    await mongoose.connection.close();
-    console.log('MongoDB connection closed due to app termination');
-    process.exit(0);
+// 3. Routes
+app.get('/', (req, res) => {
+    res.json({ message: "Backend is active on Vercel!" });
 });
 
 app.use('/auth', UserRouter);
 
-// Structure prediction proxy
 app.post('/predict', async (req, res) => {
     try {
         const flaskURL = process.env.FLASK_API_URL;
         const response = await axios.post(flaskURL, req.body);
         res.json(response.data);
     } catch (error) {
-        console.error('Error while predicting structure:', error.message);
-        res.status(500).json({ error: 'Error while predicting structure' });
+        console.error('Error:', error.message);
+        res.status(500).json({ error: 'Structure prediction failed' });
     }
 });
 
-// Fetch dataset head
 app.get('/databank-head', async (req, res) => {
     try {
-        const dataBankCollection = mongoose.connection.db.collection('DataBank');
-        const result = await dataBankCollection.find({}).limit(5).toArray();
+        const result = await mongoose.connection.db.collection('DataBank').find({}).limit(5).toArray();
         res.json(result);
     } catch (error) {
-        console.error('Error fetching dataset head:', error.message);
-        res.status(500).json({ error: 'Error fetching dataset head' });
+        res.status(500).json({ error: 'Error fetching head' });
     }
 });
 
-// Visualization fields
 app.get('/visualize', async (req, res) => {
     try {
-        if (mongoose.connection.readyState !== 1) {
-            return res.status(500).json({ error: 'Database not connected' });
-        }
-
-        const result = await mongoose.connection.db.collection('DataBank')
-            .find({}, {
-                projection: {
-                    'Length a': 1,
-                    'Length b': 1,
-                    'Length c': 1,
-                    'Angle Alpha': 1,
-                    'Angle Beta': 1,
-                    'Angle Gamma': 1,
-                    'Molecular Weight': 1,
-                    'Deposited Atom Count': 1,
-                    'Space Group': 1,
-                    _id: 0
-                }
-            }).toArray();
-
+        if (mongoose.connection.readyState !== 1) return res.status(500).json({ error: 'DB not connected' });
+        const result = await mongoose.connection.db.collection('DataBank').find({}, {
+            projection: { 'Length a': 1, 'Length b': 1, 'Length c': 1, 'Angle Alpha': 1, 'Angle Beta': 1, 'Angle Gamma': 1, 'Molecular Weight': 1, 'Deposited Atom Count': 1, 'Space Group': 1, _id: 0 }
+        }).toArray();
         res.json(result);
     } catch (error) {
-        console.error('Error fetching data for visualization:', error);
-        res.status(500).json({ error: 'Error fetching data for visualization' });
+        res.status(500).json({ error: 'Visualization fetch error' });
     }
 });
 
-// Fetch by PDB ID
 app.get('/databank/:pdb_id', async (req, res) => {
-    const { pdb_id } = req.params;
     try {
-        const result = await mongoose.connection.db.collection('DataBank').findOne({ pdb_id });
-        if (result) res.json(result);
-        else res.status(404).json({ error: 'No data found for the given pdb_id' });
+        const result = await mongoose.connection.db.collection('DataBank').findOne({ pdb_id: req.params.pdb_id });
+        result ? res.json(result) : res.status(404).json({ error: 'Not found' });
     } catch (error) {
-        console.error('Error fetching data by pdb_id:', error.message);
         res.status(500).json({ error: 'Error fetching data' });
     }
 });
 
 app.get('/fulldataset', async (req, res) => {
     try {
-        const dataBankCollection = mongoose.connection.db.collection('DataBank');
-
-        const result = await dataBankCollection.find({}).toArray();
-
-        res.json({
-            data: result,
-            totalEntries: result.length
-        });
+        const result = await mongoose.connection.db.collection('DataBank').find({}).toArray();
+        res.json({ data: result, totalEntries: result.length });
     } catch (error) {
-        console.error('Error fetching full dataset:', error.message);
         res.status(500).json({ error: 'Error fetching full dataset' });
     }
 });
 
+// 4. IMPORTANT: Only listen to port if NOT in Vercel
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+        console.log(`Server is running locally on port ${PORT}...`);
+    });
+}
 
-app.use((req, res) => {
-    res.status(404).json({ error: 'Route not found' });
-});
-
-// --- DEPLOYMENT CHANGE: Added fallback port ---
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}...`);
-});
+// 5. EXPORT THE APP (Crucial for Vercel)
+export default app;
