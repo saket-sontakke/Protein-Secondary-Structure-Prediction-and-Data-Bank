@@ -144,8 +144,6 @@
 
 
 
-
-
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
@@ -157,25 +155,34 @@ import { UserRouter } from './routes/user.js';
 dotenv.config();
 const app = express();
 
-app.use(express.json());
+// 1. Enhanced CORS Configuration
+// We define the options explicitly to match your vercel.json headers
+const clientURL = process.env.CLIENT_URL; // This must be: https://saket-sontakke-pssp.onrender.com
 
-// 1. CORS Configuration
-const clientURL = process.env.CLIENT_URL;
-app.use(cors({
+const corsOptions = {
     origin: clientURL,
-    credentials: true
-}));
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token', 'X-Requested-With', 'Accept', 'Accept-Version', 'Content-Length', 'Content-MD5', 'Date', 'X-Api-Version']
+};
 
+// Apply CORS middleware
+app.use(cors(corsOptions));
+
+// 2. Handle Preflight Requests Explicitly
+// This is crucial for Vercel. It forces Express to respond "OK" to the browser's initial check.
+app.options('*', cors(corsOptions));
+
+app.use(express.json());
 app.use(cookieParser());
 
-// 2. Database Connection (Optimized for Serverless)
-// In serverless, we don't want to reconnect on every single request if we can avoid it.
+// 3. Database Connection
 const mongoURI = process.env.MONGO_URI;
 mongoose.connect(mongoURI)
   .then(() => console.log('Connected to MongoDB'))
   .catch((error) => console.error('Error connecting to MongoDB:', error.message));
 
-// 3. Routes
+// 4. Routes
 app.get('/', (req, res) => {
     res.json({ message: "Backend is active on Vercel!" });
 });
@@ -232,7 +239,7 @@ app.get('/fulldataset', async (req, res) => {
     }
 });
 
-// 4. IMPORTANT: Only listen to port if NOT in Vercel
+// 5. Local Development Listener
 if (process.env.NODE_ENV !== 'production') {
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
@@ -240,5 +247,5 @@ if (process.env.NODE_ENV !== 'production') {
     });
 }
 
-// 5. EXPORT THE APP (Crucial for Vercel)
+// 6. Export for Vercel
 export default app;
