@@ -223,7 +223,6 @@
 
 
 
-
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -245,7 +244,7 @@ const FullDataset = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(20);
 
-  // --- Helper to fetch chunks for Table Data ---
+  // Helper to fetch chunks for Table Data
   const fetchAllTableChunks = async () => {
     let allData = [];
     let page = 0;
@@ -277,7 +276,6 @@ const FullDataset = () => {
       setLoading(true);
 
       try {
-        // Fetch all data in small packets so Vercel doesn't crash
         const fullData = await fetchAllTableChunks();
         setDataHead(fullData);
       } catch (error) {
@@ -364,21 +362,21 @@ const FullDataset = () => {
               <tr>
                 <th>PDB ID</th>
                 <th>Chain Code</th>
-                <th>Input (FASTA Sequence)</th>
-                <th>DSSP3 (3-state)</th>
-                <th>DSSP8 (8-state)</th>
-                <th>Length a (Å)</th>
-                <th>Length b (Å)</th>
-                <th>Length c (Å)</th>
-                <th>Angle Alpha (°)</th>
-                <th>Angle Beta (°)</th>
-                <th>Angle Gamma (°)</th>
+                <th>Input (FASTA)</th>
+                <th>DSSP3</th>
+                <th>DSSP8</th>
+                <th>Length a</th>
+                <th>Length b</th>
+                <th>Length c</th>
+                <th>Angle Alpha</th>
+                <th>Angle Beta</th>
+                <th>Angle Gamma</th>
                 <th>Space Group</th>
-                <th>Molecular Weight (kDa)</th>
-                <th>Deposited Atom Count</th>
-                <th>Polymer Monomer Count</th>
-                <th>Modeled Polymer Monomer Count</th>
-                <th>Unmodeled Polymer Monomer Count</th>
+                <th>Mol Weight</th>
+                <th>Atom Count</th>
+                <th>Polymer Count</th>
+                <th>Modeled</th>
+                <th>Unmodeled</th>
               </tr>
             </thead>
             <tbody>
