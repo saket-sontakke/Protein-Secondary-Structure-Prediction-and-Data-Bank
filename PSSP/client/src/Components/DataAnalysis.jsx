@@ -365,13 +365,25 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { useState, useEffect, useContext } from 'react';
 import { DataContext } from '../context/DataContext'; // Import the Context
 import Plot from 'react-plotly.js';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCopy } from '@fortawesome/free-solid-svg-icons'; 
-import { FaSpinner } from 'react-icons/fa'; 
+import { faCopy } from '@fortawesome/free-solid-svg-icons';
+import { FaSpinner } from 'react-icons/fa';
 import '../Styling/DataAnalysis.css';
 
 const DataAnalysis = () => {
@@ -381,17 +393,14 @@ const DataAnalysis = () => {
   const { lengthData, dataHead, entryCount, loading, loadingProgress } = useContext(DataContext);
 
   // 2. LOCAL STATE FOR "RENDER FREEZE" FIX
-  // Even if data is ready, we start this as TRUE to force a spinner first.
   const [isRendering, setIsRendering] = useState(true);
-  const [expandedCells, setExpandedCells] = useState({}); 
+  const [expandedCells, setExpandedCells] = useState({});
 
   // 3. DEFERRED RENDERING EFFECT
   useEffect(() => {
-    // If the data is fully loaded from Context...
     if (!loading && lengthData) {
-      // ...wait 100ms to let the browser paint the Spinner...
       const timer = setTimeout(() => {
-        setIsRendering(false); // ...THEN start the heavy chart rendering.
+        setIsRendering(false);
       }, 100);
       return () => clearTimeout(timer);
     }
@@ -400,7 +409,7 @@ const DataAnalysis = () => {
   const toggleCellExpansion = (cellType) => {
     setExpandedCells(prevState => ({
       ...prevState,
-      [cellType]: !prevState[cellType] 
+      [cellType]: !prevState[cellType]
     }));
   };
 
@@ -409,19 +418,19 @@ const DataAnalysis = () => {
       .then(() => alert('Copied to clipboard!'))
       .catch((err) => console.error('Error copying text:', err));
   };
-  
-  const plotConfig = { responsive: true, displayModeBar: false };
-  const plotStyle = { width: '100%', height: '100%', marginBottom: '2rem' };
 
-  // 4. UPDATED LOADING CHECK
-  // We show spinner if Context is fetching OR if we are doing the initial render deferral
+  const plotConfig = { responsive: true, displayModeBar: false };
+  
+  // FIX 1: Removed height: '100%' so the layout height controls the vertical size
+  const plotStyle = { width: '100%', marginBottom: '2rem' };
+
+  // 4. LOADING CHECK
   if (loading || isRendering) {
     return (
       <div className='analysis'>
         <h1>Data Analysis</h1>
         <div className="loading-container">
            <FaSpinner className="icon-spin" />
-           {/* If fetching, show progress. If rendering, just say "Rendering..." */}
            <p>{loading ? `Loading dataset... (${loadingProgress} rows)` : "Rendering Charts..."}</p>
         </div>
       </div>
@@ -511,6 +520,7 @@ const DataAnalysis = () => {
       </span>
     </p>
 
+    
       <button className='view-dataset-button'
         onClick={() => navigate('/fulldataset')}
         style={{ padding: '10px 20px', cursor: 'pointer', color: 'white', marginBottom: '20px' }}
@@ -545,8 +555,11 @@ const DataAnalysis = () => {
         ]}
         layout={{
           autosize: true,
-          height: 400,
-          title: 'Distribution of Lengths (a, b, c)',
+          height: 450, // Increased height slightly
+          title: { 
+            text: 'Distribution of Lengths (a, b, c)',
+            y: 0.95, x: 0.5, xanchor: 'center', yanchor: 'top' 
+          },
           xaxis: { title: 'Length', range: [0, 450] },
           yaxis: { title: 'Frequency' },
           paper_bgcolor: '#f9f9f9',
@@ -554,7 +567,8 @@ const DataAnalysis = () => {
           barmode: 'stack',
           showlegend: true,
           legend: { orientation: 'h', y: -0.2 },
-          margin: { l: 50, r: 20, b: 50, t: 50 }
+          // FIX 2: Increased top margin to 80
+          margin: { l: 50, r: 20, b: 50, t: 80 }
         }}
       />
 
@@ -573,13 +587,16 @@ const DataAnalysis = () => {
         ]}
         layout={{
           autosize: true,
-          height: 400,
-          title: 'Distribution of Molecular Weight',
+          height: 450,
+          title: { 
+            text: 'Distribution of Molecular Weight',
+            y: 0.95, x: 0.5, xanchor: 'center', yanchor: 'top'
+          },
           xaxis: { title: 'Molecular Weight' },
           yaxis: { title: 'Frequency' },
           paper_bgcolor: '#f9f9f9',
           plot_bgcolor: '#ffffff',
-          margin: { l: 50, r: 20, b: 50, t: 50 },
+          margin: { l: 50, r: 20, b: 50, t: 80 }, // Fix margin
           showlegend: false
         }}
       />
@@ -604,13 +621,16 @@ const DataAnalysis = () => {
       ]}
       layout={{
         autosize: true,
-        height: 400,
-        title: 'Atom Count vs Molecular Weight',
+        height: 450,
+        title: { 
+          text: 'Atom Count vs Molecular Weight',
+          y: 0.95, x: 0.5, xanchor: 'center', yanchor: 'top'
+        },
         xaxis: { title: 'Molecular Weight' },
         yaxis: { title: 'Deposited Atom Count' },
         paper_bgcolor: '#f9f9f9',
         plot_bgcolor: '#ffffff',
-        margin: { l: 50, r: 20, b: 50, t: 50 }
+        margin: { l: 50, r: 20, b: 50, t: 80 } // Fix margin
       }}
     />
 
@@ -634,14 +654,17 @@ const DataAnalysis = () => {
         ]}
         layout={{
           autosize: true,
-          height: 500,
-          title: '3D Plot: Lengths (a, b, c)',
+          height: 550, // Taller for 3D
+          title: { 
+            text: '3D Plot: Lengths (a, b, c)',
+            y: 0.95, x: 0.5, xanchor: 'center', yanchor: 'top'
+          },
           scene: {
             xaxis: { title: 'Len A' },
             yaxis: { title: 'Len B' },
             zaxis: { title: 'Len C' },
           },
-          margin: { l: 0, r: 0, b: 0, t: 40 },
+          margin: { l: 0, r: 0, b: 0, t: 80 }, // Fix margin
         }}
       />
 
@@ -666,14 +689,17 @@ const DataAnalysis = () => {
         ]}
         layout={{
           autosize: true,
-          height: 500,
-          title: '3D Plot: Angles',
+          height: 550, // Taller for 3D
+          title: { 
+            text: '3D Plot: Angles',
+            y: 0.95, x: 0.5, xanchor: 'center', yanchor: 'top'
+          },
           scene: {
             xaxis: { title: 'Alpha' },
             yaxis: { title: 'Beta' },
             zaxis: { title: 'Gamma' }
           },
-          margin: { l: 0, r: 0, b: 0, t: 40 }
+          margin: { l: 0, r: 0, b: 0, t: 80 } // Fix margin
         }}
       />
     </div>
