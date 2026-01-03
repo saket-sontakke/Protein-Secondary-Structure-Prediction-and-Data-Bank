@@ -381,20 +381,29 @@ const baseUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
 
 const DataAnalysis = () => {
   const navigate = useNavigate();
+  
+  // Loading state
   const [loading, setLoading] = useState(true);
+  // NEW: State to track loading progress
   const [loadingProgress, setLoadingProgress] = useState(0); 
 
   const [lengthData, setLengthData] = useState({
-    lengthsA: [], lengthsB: [], lengthsC: [],
-    molecularWeights: [], atomCounts: [], spaceGroups: [],
-    anglesAlpha: [], anglesBeta: [], anglesGamma: []
+    lengthsA: [],
+    lengthsB: [],
+    lengthsC: [],
+    molecularWeights: [], 
+    atomCounts: [], 
+    spaceGroups: [], 
+    anglesAlpha: [],
+    anglesBeta: [], 
+    anglesGamma: []
   });
 
   const [dataHead, setDataHead] = useState([]); 
   const [expandedCells, setExpandedCells] = useState({}); 
   const [entryCount, setEntryCount] = useState(0); 
 
-  // Helper function to fetch all chunks
+  // NEW: Helper function to fetch all chunks
   const fetchAllChunks = async (endpoint) => {
     let allData = [];
     let page = 0;
@@ -407,7 +416,7 @@ const DataAnalysis = () => {
 
         if (chunk && chunk.length > 0) {
           allData = [...allData, ...chunk];
-          setLoadingProgress((prev) => prev + chunk.length);
+          setLoadingProgress((prev) => prev + chunk.length); // Update progress
           page++;
         } else {
           keepFetching = false;
@@ -421,18 +430,19 @@ const DataAnalysis = () => {
   };
 
   useEffect(() => {
+    // Start loading
     setLoading(true);
 
     const fetchData = async () => {
       try {
-        // 1. Fetch Head
+        // 1. Fetch Table Head (Small request, do it normally)
         const headRes = await Axios.get(`${baseUrl}/databank-head`);
         setDataHead(headRes.data);
 
-        // 2. Fetch Visualization Data in Chunks
+        // 2. Fetch Visualization Data in Chunks (Large request, do it wisely)
         const fullVisualData = await fetchAllChunks('visualize');
 
-        // 3. Process Data
+        // 3. Process Visualization Data
         const lengthsA = fullVisualData.map(item => item['Length a']);
         const lengthsB = fullVisualData.map(item => item['Length b']);
         const lengthsC = fullVisualData.map(item => item['Length c']);
@@ -453,6 +463,7 @@ const DataAnalysis = () => {
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
+        // Stop loading whether successful or failed
         setLoading(false);
       }
     };
@@ -473,6 +484,7 @@ const DataAnalysis = () => {
       .catch((err) => console.error('Error copying text:', err));
   };
   
+  // Standard config for responsive plots
   const plotConfig = { responsive: true, displayModeBar: false };
   const plotStyle = { width: '100%', height: '100%', marginBottom: '2rem' };
 
@@ -482,6 +494,7 @@ const DataAnalysis = () => {
         <h1>Data Analysis</h1>
         <div className="loading-container">
            <FaSpinner className="icon-spin" />
+           {/* UPDATED: Shows progress count */}
            <p>Loading dataset... ({loadingProgress} loaded)</p>
         </div>
       </div>
@@ -491,31 +504,35 @@ const DataAnalysis = () => {
   return (
     <div className='analysis'>
       <h1>Data Analysis</h1>
+
       <h2>Protein Database</h2>
-      <p>A protein database is a valuable resource for researchers and scientists, providing a collection of structural and sequence-related data on proteins. By aggregating this data in a standardized and accessible format, protein databases enable users to conduct computational analyses, generate new hypotheses, and advance our understanding of biological processes at the molecular level.</p>
-      <p className="entry-count">Number of entries in the dataset: {entryCount}</p>
+      <p>
+        A protein database is a valuable resource for researchers and scientists, providing a collection of structural and sequence-related data on proteins. By aggregating this data in a standardized and accessible format, protein databases enable users to conduct computational analyses, generate new hypotheses, and advance our understanding of biological processes at the molecular level.
+      </p>
+       <p className="entry-count">Number of entries in the dataset: {entryCount}</p>
 
       <div className="table-container">
         <table className="data-table">
           <thead>
+            {/* RESTORED: Old Code Detailed Headers */}
             <tr>
               <th>PDB ID</th>
               <th>Chain Code</th>
-              <th>Input (FASTA)</th>
-              <th>DSSP3</th>
-              <th>DSSP8</th>
-              <th>Length a</th>
-              <th>Length b</th>
-              <th>Length c</th>
-              <th>Angle Alpha</th>
-              <th>Angle Beta</th>
-              <th>Angle Gamma</th>
+              <th>Input <br></br>(FASTA Sequence)</th>
+              <th>DSSP3 <br></br>(3-state)</th>
+              <th>DSSP8 <br></br>(8-state)</th>
+              <th>Length a (Å)</th>
+              <th>Length b (Å)</th>
+              <th>Length c (Å)</th>
+              <th>Angle Alpha (°)</th>
+              <th>Angle Beta (°)</th>
+              <th>Angle Gamma (°)</th>
               <th>Space Group</th>
-              <th>Mol Weight</th>
-              <th>Atom Count</th>
-              <th>Polymer Count</th>
-              <th>Modeled</th>
-              <th>Unmodeled</th>
+              <th>Molecular Weight (kDa)</th>
+              <th>Deposited Atom Count</th>
+              <th>Polymer Monomer Count</th>
+              <th>Modeled Polymer Monomer Count</th>
+              <th>Unmodeled Polymer Monomer Count</th>
             </tr>
           </thead>
           <tbody>
@@ -527,19 +544,19 @@ const DataAnalysis = () => {
                   <span onClick={() => toggleCellExpansion('input')} style={{ cursor: 'pointer' }}>
                     {expandedCells['input'] ? row.input : `${row.input.substring(0, 10)}...`}
                   </span>
-                  <FontAwesomeIcon icon={faCopy} onClick={() => copyToClipboard(row.input)} className="copy-icon" style={{ marginLeft: '8px' }} />
+                  <FontAwesomeIcon icon={faCopy} onClick={() => copyToClipboard(row.input)} className="copy-icon" style={{ cursor: 'pointer', marginLeft: '8px' }} />
                 </td>
                 <td>
                   <span onClick={() => toggleCellExpansion('dssp3')} style={{ cursor: 'pointer' }}>
                     {expandedCells['dssp3'] ? row.dssp3 : `${row.dssp3.substring(0, 10)}...`}
                   </span>
-                  <FontAwesomeIcon icon={faCopy} onClick={() => copyToClipboard(row.dssp3)} className="copy-icon" style={{ marginLeft: '8px' }} />
+                  <FontAwesomeIcon icon={faCopy} onClick={() => copyToClipboard(row.dssp3)} className="copy-icon" style={{ cursor: 'pointer', marginLeft: '8px' }} />
                 </td>
                 <td>
                   <span onClick={() => toggleCellExpansion('dssp8')} style={{ cursor: 'pointer' }}>
                     {expandedCells['dssp8'] ? row.dssp8 : `${row.dssp8.substring(0, 10)}...`}
                   </span>
-                  <FontAwesomeIcon icon={faCopy} onClick={() => copyToClipboard(row.dssp8)} className="copy-icon" style={{ marginLeft: '8px' }} />
+                  <FontAwesomeIcon icon={faCopy} onClick={() => copyToClipboard(row.dssp8)} className="copy-icon" style={{ cursor: 'pointer', marginLeft: '8px' }} />
                 </td>
                 <td>{row['Length a']}</td>
                 <td>{row['Length b']}</td>
@@ -560,15 +577,24 @@ const DataAnalysis = () => {
       </div>
       
       <p style={{ marginBottom: '1rem' }}>
-        For detailed dataset description <span onClick={() => navigate('/Resources')} style={{ cursor: 'pointer', color: 'blue', marginLeft: '5px'}}>click here.</span>
-      </p>
+      For detailed dataset description 
+      <span onClick={() => navigate('/Resources')} style={{ cursor: 'pointer', color: 'blue', marginLeft: '5px'}}>
+        click here.
+      </span>
+    </p>
 
-      <button className='view-dataset-button' onClick={() => navigate('/fulldataset')} style={{ padding: '10px 20px', cursor: 'pointer', color: 'white', marginBottom: '20px' }}>
+    
+      <button className='view-dataset-button'
+        onClick={() => navigate('/fulldataset')}
+        style={{ padding: '10px 20px', cursor: 'pointer', color: 'white', marginBottom: '20px' }}
+      >
         View Full Dataset
       </button>
 
-      <div className='plots'>
-       <Plot
+
+    <div className='plots'>
+      {/* Lengths Histogram */}
+      <Plot
         useResizeHandler={true}
         style={plotStyle}
         config={plotConfig}
@@ -605,7 +631,9 @@ const DataAnalysis = () => {
         }}
       />
 
-       <Plot
+      
+     {/* Molecular Weight Histogram */}
+     <Plot
         useResizeHandler={true}
         style={plotStyle}
         config={plotConfig}
@@ -629,35 +657,38 @@ const DataAnalysis = () => {
         }}
       />
 
+      {/* Atom Count Scatter */}
       <Plot
-        useResizeHandler={true}
-        style={plotStyle}
-        config={plotConfig}
-        data={[
-          {
-            x: lengthData.molecularWeights,
-            y: lengthData.atomCounts,
-            mode: 'markers',
-            marker: {
-              size: 8,
-              color: lengthData.spaceGroups.map((group, index) => index),
-              colorscale: 'Viridis',
-            },
-            hovertemplate: 'Mol Weight: %{x}<br>Atom Count: %{y}<extra></extra>',
-          }
-        ]}
-        layout={{
-          autosize: true,
-          height: 400,
-          title: 'Atom Count vs Molecular Weight',
-          xaxis: { title: 'Molecular Weight' },
-          yaxis: { title: 'Deposited Atom Count' },
-          paper_bgcolor: '#f9f9f9',
-          plot_bgcolor: '#ffffff',
-          margin: { l: 50, r: 20, b: 50, t: 50 }
-        }}
-      />
+      useResizeHandler={true}
+      style={plotStyle}
+      config={plotConfig}
+      data={[
+        {
+          x: lengthData.molecularWeights,
+          y: lengthData.atomCounts,
+          mode: 'markers',
+          marker: {
+            size: 8,
+            color: lengthData.spaceGroups.map((group, index) => index),
+            colorscale: 'Viridis',
+          },
+          hovertemplate: 'Mol Weight: %{x}<br>Atom Count: %{y}<extra></extra>',
+        }
+      ]}
+      layout={{
+        autosize: true,
+        height: 400,
+        title: 'Atom Count vs Molecular Weight',
+        xaxis: { title: 'Molecular Weight' },
+        yaxis: { title: 'Deposited Atom Count' },
+        paper_bgcolor: '#f9f9f9',
+        plot_bgcolor: '#ffffff',
+        margin: { l: 50, r: 20, b: 50, t: 50 }
+      }}
+    />
 
+
+      {/* 3D Scatter Plot */}
       <Plot
         useResizeHandler={true}
         style={plotStyle}
@@ -687,6 +718,8 @@ const DataAnalysis = () => {
         }}
       />
 
+
+       {/* 3D Scatter Plot for Angles */}
        <Plot
         useResizeHandler={true}
         style={plotStyle}
@@ -717,9 +750,10 @@ const DataAnalysis = () => {
         }}
       />
     </div>
+
     </div>
   );
 };
 
-export default DataAnalysis;
 
+export default DataAnalysis;
