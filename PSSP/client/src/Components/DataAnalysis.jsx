@@ -492,7 +492,7 @@ const DataAnalysis = () => {
     <div className='analysis'>
       <h1>Data Analysis</h1>
       <h2>Protein Database</h2>
-      <p>A protein database is a valuable resource...</p>
+      <p>A protein database is a valuable resource for researchers and scientists, providing a collection of structural and sequence-related data on proteins. By aggregating this data in a standardized and accessible format, protein databases enable users to conduct computational analyses, generate new hypotheses, and advance our understanding of biological processes at the molecular level.</p>
       <p className="entry-count">Number of entries in the dataset: {entryCount}</p>
 
       <div className="table-container">
@@ -722,3 +722,4 @@ const DataAnalysis = () => {
 };
 
 export default DataAnalysis;
+
