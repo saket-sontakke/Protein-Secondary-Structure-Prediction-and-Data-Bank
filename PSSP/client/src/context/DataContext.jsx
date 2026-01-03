@@ -108,7 +108,6 @@
 
 
 
-
 import React, { createContext, useState, useEffect } from 'react';
 import Axios from 'axios';
 
@@ -118,8 +117,8 @@ const baseUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
 
 export const DataProvider = ({ children }) => {
   // 1. GLOBAL STATE
-  const [fullData, setFullData] = useState(null); // The Master Dataset (for Table)
-  const [chartData, setChartData] = useState(null); // Processed Data (for Plots)
+  const [fullData, setFullData] = useState(null); 
+  const [chartData, setChartData] = useState(null); 
   const [entryCount, setEntryCount] = useState(0);
   
   // Loading states
@@ -135,7 +134,7 @@ export const DataProvider = ({ children }) => {
 
     const fetchAllChunks = async () => {
       let allData = [];
-      let page = 0;
+      let page = 0; // usually pages start at 1 for some APIs, but 0 for others. Keep your working logic.
       let keepFetching = true;
 
       // Reset loading state
@@ -143,10 +142,10 @@ export const DataProvider = ({ children }) => {
 
       while (keepFetching) {
         try {
-          // We fetch /fulldataset as the "Master Source"
-          const res = await Axios.get(`${baseUrl}/fulldataset?page=${page}`);
+          // --- CHANGE IS HERE ---
+          // Added '&limit=4511' to request larger chunks
+          const res = await Axios.get(`${baseUrl}/fulldataset?page=${page}&limit=4511`);
           
-          // Handle response structure (res.data.data based on your snippet)
           const chunk = res.data.data || res.data; 
 
           if (chunk && chunk.length > 0) {
@@ -168,12 +167,11 @@ export const DataProvider = ({ children }) => {
       try {
         const rawData = await fetchAllChunks();
 
-        // 1. Store Raw Data (For FullDataset Table)
+        // 1. Store Raw Data
         setFullData(rawData);
         setEntryCount(rawData.length);
 
-        // 2. Derive Chart Data (For DataAnalysis Plots)
-        // We map this ONCE so the charts don't have to do it every render
+        // 2. Derive Chart Data
         const processedCharts = {
           lengthsA: rawData.map(item => item['Length a']),
           lengthsB: rawData.map(item => item['Length b']),
