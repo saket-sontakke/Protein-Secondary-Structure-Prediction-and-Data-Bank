@@ -223,74 +223,52 @@
 
 
 
-import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
+
+
+
+
+
+import React, { useState, useContext, useEffect } from 'react';
+import { DataContext } from '../context/DataContext'; // Import Context
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import { FaSpinner } from 'react-icons/fa';
 import '../Styling/FullDataset.css';
 
-const baseUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
-
 const FullDataset = () => {
-  const [loading, setLoading] = useState(true);
-  const [loadingProgress, setLoadingProgress] = useState(0);
-
-  const [dataHead, setDataHead] = useState([]);
+  // 1. CONSUME CONTEXT (No Axios here!)
+  const { fullData, loading, loadingProgress } = useContext(DataContext);
+  
   const [expandedCells, setExpandedCells] = useState({});
   const [searchTerm, setSearchTerm] = useState('');
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(20);
+  // Derived state for filtering
+  const [filteredData, setFilteredData] = useState([]);
 
-  // Helper to fetch chunks for Table Data
-  const fetchAllTableChunks = async () => {
-    let allData = [];
-    let page = 0;
-    let keepFetching = true;
-
-    while (keepFetching) {
-      try {
-        const res = await Axios.get(`${baseUrl}/fulldataset?page=${page}`);
-        // Backend returns { data: [...], count: N } for this route
-        const chunk = res.data.data; 
-
-        if (chunk && chunk.length > 0) {
-          allData = [...allData, ...chunk];
-          setLoadingProgress(prev => prev + chunk.length);
-          page++;
-        } else {
-          keepFetching = false;
-        }
-      } catch (err) {
-        console.error("Error fetching chunk", err);
-        keepFetching = false;
-      }
-    }
-    return allData;
-  };
-
+  // 2. EFFECT: Handle Filtering & Search locally
+  // Whenever fullData or searchTerm changes, we update the filtered list
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
+    if (!fullData) return;
 
-      try {
-        const fullData = await fetchAllTableChunks();
-        setDataHead(fullData);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+    if (searchTerm === '') {
+      setFilteredData(fullData);
+    } else {
+      const lowerSearch = searchTerm.toLowerCase();
+      const results = fullData.filter((row) =>
+        row.pdb_id?.toLowerCase().includes(lowerSearch)
+      );
+      setFilteredData(results);
+    }
+    // Reset to page 1 on search
+    if (searchTerm !== '') setCurrentPage(1);
+  }, [fullData, searchTerm]);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
-    setCurrentPage(1);
   };
 
   const toggleCellExpansion = (cellType) => {
@@ -306,14 +284,11 @@ const FullDataset = () => {
       .catch((err) => console.error('Error copying text:', err));
   };
 
-  const filteredData = dataHead.filter((row) =>
-    row.pdb_id.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
+  // 3. PAGINATION LOGIC (Client-side slicing)
   const startIdx = (currentPage - 1) * itemsPerPage;
   const currentData = filteredData.slice(startIdx, startIdx + itemsPerPage);
-
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
   const handlePreviousPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
   const handleNextPage = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages));
   const handleItemsPerPageChange = (event) => {
@@ -321,6 +296,7 @@ const FullDataset = () => {
     setCurrentPage(1);
   };
 
+  // If Context is still fetching the initial load
   if (loading) {
     return (
       <div className='full-dataset'>
@@ -332,6 +308,9 @@ const FullDataset = () => {
       </div>
     );
   }
+
+  // Safety check
+  if (!fullData) return <div className='full-dataset'>Error loading data.</div>;
 
   return (
     <div className='full-dataset'>
@@ -419,7 +398,7 @@ const FullDataset = () => {
             </tbody>
           </table>
         ) : (
-          <p>No data available.</p>
+          <p>No data found.</p>
         )}
       </div>
 
