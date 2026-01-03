@@ -105,14 +105,6 @@
 
 
 
-
-
-
-
-
-
-
-
 import React, { createContext, useState, useEffect } from 'react';
 import Axios from 'axios';
 
@@ -123,9 +115,10 @@ const baseUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
 export const DataProvider = ({ children }) => {
   // 1. GLOBAL STATE
   const [fullData, setFullData] = useState(null); 
-  const [chartData, setChartData] = useState(null); 
+  const [lengthData, setLengthData] = useState(null); // Renamed to match your Component
+  const [dataHead, setDataHead] = useState([]);       // Added this for the table preview
   const [entryCount, setEntryCount] = useState(0);
-  
+   
   // Loading states
   const [loading, setLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
@@ -139,7 +132,7 @@ export const DataProvider = ({ children }) => {
 
     const fetchAllChunks = async () => {
       let allData = [];
-      let page = 0; // usually pages start at 1 for some APIs, but 0 for others. Keep your working logic.
+      let page = 0; 
       let keepFetching = true;
 
       // Reset loading state
@@ -147,10 +140,9 @@ export const DataProvider = ({ children }) => {
 
       while (keepFetching) {
         try {
-          // --- CHANGE IS HERE ---
-          // Added '&limit=4511' to request larger chunks
+          // KEPT AS REQUESTED: limit=4511
           const res = await Axios.get(`${baseUrl}/fulldataset?page=${page}&limit=4511`);
-          
+           
           const chunk = res.data.data || res.data; 
 
           if (chunk && chunk.length > 0) {
@@ -172,11 +164,15 @@ export const DataProvider = ({ children }) => {
       try {
         const rawData = await fetchAllChunks();
 
-        // 1. Store Raw Data
+        // 1. Store Raw Data & Stats
         setFullData(rawData);
         setEntryCount(rawData.length);
 
-        // 2. Derive Chart Data
+        // 2. Create Data Head (First 20 rows for the preview table)
+        // This fixes the "dataHead.map is not a function" error
+        setDataHead(rawData.slice(0, 20));
+
+        // 3. Derive Chart Data (Renamed to lengthData to match your component)
         const processedCharts = {
           lengthsA: rawData.map(item => item['Length a']),
           lengthsB: rawData.map(item => item['Length b']),
@@ -188,7 +184,7 @@ export const DataProvider = ({ children }) => {
           anglesBeta: rawData.map(item => item['Angle Beta']),
           anglesGamma: rawData.map(item => item['Angle Gamma']),
         };
-        setChartData(processedCharts);
+        setLengthData(processedCharts);
 
       } catch (error) {
         console.error("Context fetch error:", error);
@@ -201,7 +197,14 @@ export const DataProvider = ({ children }) => {
   }, []); 
 
   return (
-    <DataContext.Provider value={{ fullData, chartData, entryCount, loading, loadingProgress }}>
+    <DataContext.Provider value={{ 
+        fullData, 
+        lengthData, // Now this exists, fixing the DataAnalysis crash
+        dataHead,   // Now this exists, fixing the table preview
+        entryCount, 
+        loading, 
+        loadingProgress 
+    }}>
       {children}
     </DataContext.Provider>
   );
