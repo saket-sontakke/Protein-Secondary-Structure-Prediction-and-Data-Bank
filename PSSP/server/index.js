@@ -223,7 +223,7 @@ app.get('/visualize', async (req, res) => {
         await connectToDatabase(); // <--- CRITICAL: Wait for connection
         
         const page = parseInt(req.query.page) || 0;
-        const limit = 3000; // Safe chunk size
+        const limit = 4511; // Safe chunk size
         const skip = page * limit;
 
         const result = await mongoose.connection.db.collection('DataBank').find({}, {
