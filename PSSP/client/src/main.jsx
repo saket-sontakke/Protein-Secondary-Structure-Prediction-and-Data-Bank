@@ -2,10 +2,12 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import './Styling/App.css'; 
-
+import { DataProvider } from './context/DataContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <DataProvider>
+      <App />
+    </DataProvider>
   </StrictMode>,
 )
