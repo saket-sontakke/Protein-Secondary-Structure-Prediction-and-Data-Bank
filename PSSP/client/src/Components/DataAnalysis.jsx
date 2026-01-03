@@ -390,7 +390,7 @@ const DataAnalysis = () => {
   const navigate = useNavigate();
 
   // 1. CONSUME CONTEXT
-  const { lengthData, dataHead, entryCount, loading, loadingProgress } = useContext(DataContext);
+  const { chartData, fullData, entryCount, loading, loadingProgress } = useContext(DataContext);
 
   // 2. LOCAL STATE FOR "RENDER FREEZE" FIX
   const [isRendering, setIsRendering] = useState(true);
@@ -709,3 +709,4 @@ const DataAnalysis = () => {
 };
 
 export default DataAnalysis;
+
